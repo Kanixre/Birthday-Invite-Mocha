@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Fateful Evening Adventure ❤️</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+text-align:center;
+background: linear-gradient(135deg,#0f172a,#1e293b,#020617);
+color:#e2e8f0;
+margin:0;
+padding:0;
+}
+
+.container{
+margin-top:40px;
+padding:20px;
+}
+
+h1{
+color:rgba(202, 198, 198, 0.719);
+font-size:3em;
+}
+
+.card{
+background:#0b1120;
+padding:30px;
+border-radius:20px;
+width:85%;
+max-width:520px;
+margin:auto;
+box-shadow:0 10px 35px rgba(0,0,0,0.6);
+border:1px solid #1e293b;
+}
+
+img{
+width:100%;
+border-radius:15px;
+margin-top:15px;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+font-size:16px;
+border:none;
+border-radius:30px;
+background:#2a2b80;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.hidden{
+display:none;
+}
+
+#message{
+margin-top:15px;
+font-size:18px;
+font-weight:bold;
+}
+
+#personaBox{
+margin-top:20px;
+background:#fff5f700;
+padding:15px;
+border-radius:12px;
+}
+
+#countdown{
+font-size:18px;
+margin-top:10px;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:1px solid #ddd;
+width:70%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎂 Birthday Adventure 🎂</h1>
+
+<div class="card">
+
+<p>Hello my gorgeous caramel-skinned woman.</p>
+
+<p>A special trip has been planned just for you.
+
+But first… you must see who you will become.</p>
+
+<input id="nameInput" placeholder="Choose your name">
+
+<br>
+
+<button onclick="generatePersona()">Start Birthday Experience</button>
+
+<div id="countdown"></div>
+
+<p style="opacity:0.7">Location: Classified until arrival</p>
+
+<div id="personaBox" class="hidden">
+
+<h3>🎭 Birthday Personas</h3>
+
+<p id="personaText"></p>
+
+</div>
+
+<img id="randomImage">
+
+<button id="surpriseBtn" class="hidden">Open Your Surprise</button>
+
+<p id="message"></p>
+
+</div>
+
+<div class="container">
+
+<h1>🎂 Theme 🎂</h1>
+
+<div class="card">
+
+
+
+<p>. away invited to a birthday adventure planned just for you.</p>
+
+<img id="randomImage">
+
+<button id="surpriseBtn">Open Your Surprise</button>
+
+<p id="surprise" class="hidden">
+✨ For this adventure, your name is ----. 
+
+
+
+Hello ---,you've been invited on a You are cordially invited to a birthday weekend of bliss and relaxation .  
+Food, fun, and a little adventure.  
+All you have to do is show up and enjoy your day.
+If you have any requests, please write them here and your requests will be tended to, thank you.
+
+</p>
+
+</div>
+
+<audio id="music">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c6b1e2a0f.mp3?filename=romantic-background-112188.mp3">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+/* CHANGE THIS TO YOUR NAME */
+
+const myName = "Offiong";
+
+
+/* RANDOM IMAGE */
+
+const images = [
+"https://picsum.photos/500/350?random=1",
+"https://picsum.photos/500/350?random=2",
+"https://picsum.photos/500/350?random=3"
+];
+
+document.getElementById("randomImage").src =
+images[Math.floor(Math.random()*images.length)];
+
+
+/* COUNTDOWN */
+
+const birthday = new Date("2026-03-22 00:00:00").getTime();
+
+setInterval(function(){
+
+const now = new Date().getTime();
+const distance = birthday - now;
+
+const d = Math.floor(distance/(1000*60*60*24));
+const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const m = Math.floor((distance%(1000*60*60))/(1000*60));
+const s = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+"⏳ " + d + "d " + h + "h " + m + "m " + s + "s";
+
+},1000);
+
+
+/* PERSONA GENERATOR */
+
+function generatePersona(){
+
+const name = document.getElementById("nameInput").value;
+
+if(name.trim() === ""){
+alert("Enter your name first 😌");
+return;
+}
+
+const personas = [
+
+name + " — The City Girl, arriving somewhere new for her birthday adventure.\n\nMeeting: " + myName + ", a local who knows exactly where the best nights, hidden streets, and unforgettable memories live.",
+
+"For this birthday getaway:\n\n" + name + " becomes The Explorer from the City.\n\nGuided by: " + myName + ", the Local who knows the secrets of the destination.",
+
+];
+
+const randomPersona = personas[Math.floor(Math.random()*personas.length)];
+
+document.getElementById("personaBox").classList.remove("hidden");
+document.getElementById("personaText").innerText = randomPersona;
+
+document.getElementById("surpriseBtn").classList.remove("hidden");
+
+}
+
+
+/* SURPRISE BUTTON */
+
+document.getElementById("surpriseBtn").addEventListener("click", function(){
+
+document.getElementById("music").play();
+
+confetti({
+particleCount:200,
+spread:120,
+origin:{y:0.6}
+});
+
+const text =
+"Your invitation has been accepted.\n\nPack your curiosity, your best outfits, and your birthday energy.\n\nA trip has been planned. The destination will reveal itself soon.\n\nYour role: The City Girl.\nMy role: The Local.\n\nYour birthday adventure begins soon.";
+
+let i = 0;
+
+function typeWriter(){
+if(i < text.length){
+document.getElementById("message").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,40);
+}
+}
+
+typeWriter();
+
+});
+
+</script>
+
+</body>
+</html>
+```
